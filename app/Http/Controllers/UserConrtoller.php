@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Exists;
 
 class UserConrtoller extends Controller
 {
@@ -106,7 +108,7 @@ class UserConrtoller extends Controller
         return back();
     }
 
- 
+
 
     public function creatfactoryblog($id){
 
@@ -138,6 +140,27 @@ class UserConrtoller extends Controller
     {
         $user= User::find($id)->profile()->get();
         return view('user.showprofile',['user'=>$user]);
+    }
+
+    public function storage()
+    {
+          echo storage::disk('public')->put('1.txt','hello');
+        // return storage::disk('public')->get('1.txt');
+        // return storage::download('1.txt');
+        // return storage::disk('public')->Exists('1.txt');
+        // return storage::disk('public')->URL('1.txt');
+        // return storage::disk('public')->size('1.txt');
+        // return storage::disk('public')->lastModified('1.txt');
+        // return storage::disk('public')->prepend('1.txt','yari');
+        // return storage::disk('public')->append('1.txt','zalani');
+        // return storage::disk('public')->copy('1.txt','2.txt');
+
+        // return storage::disk('public')->move('1.txt','3.txt');
+        // return storage::disk('public')->delete('2.txt');
+
+        // return storage::disk('public')->makeDirectory('yari');
+        return storage::disk('public')->deleteDirectory('yari');
+     
     }
 
 }

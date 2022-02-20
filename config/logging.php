@@ -54,6 +54,8 @@ return [
             'ignore_exceptions' => false,
         ],
 
+
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -114,5 +116,23 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
     ],
+    'channels'=>[
 
+        'itslot'=>[
+
+            'driver'=>'single',
+            'path'=>storage_path('logs/itslot.log'),
+            'level'=>'info',
+        ],
+    ],
+
+    'channels'=>[
+
+        'login'=>[
+
+            'driver'=>'single',
+            'path'=>storage_path('logs/login.log'),
+            'level'=>'info',
+        ],
+    ]
 ];

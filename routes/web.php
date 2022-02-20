@@ -6,7 +6,8 @@ use App\Http\Controllers\Formcontroller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserConrtoller;
 use App\Http\Controllers\UserController;
-
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,7 +61,7 @@ Route ::get('/{id}',[Formcontroller::class,'restore']);
     Route::get('/{id}/showprofile',[UserConrtoller::class,'ShowProfile'])->name('showprofile');
 });
 
-
+Route::get('/user',[UserConrtoller::class,'storage']);
 
 
 
@@ -85,3 +86,18 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/log',function (){
+
+    log::channel('itslot')->info('log active');
+// log::debug('log activate');
+// return view('index');
+});
+
+// log::channel('login')->info('log active');
+
+Route::get('/message/{lang}',function($lang){
+
+    App::setLocale($lang);
+    return view('message');
+});
